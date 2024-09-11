@@ -124,8 +124,10 @@ function App() {
   const fees = selectedStock ? calculateFees() : {};
 
   return (
-    <div className="p-4 relative">
-      <h1 className="text-2xl text-white font-bold mb-4">Buy your favorite stocks</h1>
+    <div className="p-4 relative" style = {{
+      marginLeft: 100
+    }}>
+      <h1 className="text-4xl text-white font-bold mb-4">Buy your favorite stocks</h1>
       <div className="mb-4">
         <input
           type="text"
@@ -157,9 +159,9 @@ function App() {
           <option value="Upstox">Upstox</option>
         </select>
       </div>
-      <ul className="list-disc text-white pl-5">
+      <div className="list-disc text-white pl-5">
         {filteredStocks.map((stock, index) => (
-          <li
+          <div
             key={index}
             className="list-item mb-2 cursor-pointer p-2 rounded-md"
             onClick={() => {
@@ -168,12 +170,16 @@ function App() {
             }}
           >
             {stock.name}: ₹{stock.price}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
 
       {selectedStock && (
-        <div className="fixed bottom-4 right-4 p-4 bg-white border border-gray-300 shadow-lg rounded-md">
+        <div className="fixed bottom-4 right-4 p-3 bg-white border border-gray-300 shadow-lg rounded-md"
+        style = {{
+          height: 400,
+        }}
+        >
           <h2 className="text-lg font-bold">{selectedStock.name}</h2>
           <p className="text-xl">Price per item: ₹{selectedStock.price}</p>
           <div className="mt-2">
@@ -194,6 +200,7 @@ function App() {
             <p>SEC Fees: ₹{fees.secFees?.toFixed(2) || 0}</p>
             <p>FINRA Fees: ₹{fees.finraFees?.toFixed(2) || 0}</p>
             <p>Platform Fees: ₹{fees.platformFees?.toFixed(2) || 0}</p>
+            <button class = "buy">Buy now</button>
           </div>
         </div>
       )}
